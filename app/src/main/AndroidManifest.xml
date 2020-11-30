@@ -9,16 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingListNotificationProvider">
+
         <service
             android:name=".NotificationService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
 
         <receiver
             android:name=".ModificationEventReceiver"
             android:enabled="true"
             android:exported="true"
-            android:permission="TODO" />
+            android:permission="com.byeduck.shoppinglist.permissions.SEND_RECEIVE_NOTI">
+            <intent-filter android:priority="999">
+                <action android:name="com.byeduck.shoppinglist.NOTI" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
