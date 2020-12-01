@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">ShoppingListNotificationProvider</string>
-    <string name="channelId">123</string>
     <string name="channelName">ShoppingListNotificationChannel</string>
     <string name="channelDescription">Channel for receiving notifications from shopping list app</string>
-    <string name="notificationTitle">Shopping list has been added/edited!</string>
+    <string name="mainPackage">com.byeduck.shoppinglist</string>
 </resources>
