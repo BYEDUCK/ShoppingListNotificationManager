@@ -9,9 +9,9 @@ class ModificationEventReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         Toast.makeText(context, "Received broadcast", Toast.LENGTH_SHORT).show()
-        val listId = intent.getLongExtra("listId", -1L)
+        val listId = intent.getStringExtra("listId")
         val elemTxt = intent.getStringExtra("elemTxt")
-        val elemId = intent.getLongExtra("elemId", -1L)
+        val elemId = intent.getStringExtra("elemId")
         val serviceIntent = Intent(context, NotificationService::class.java).apply {
             putExtra("listId", listId)
             putExtra("elemTxt", elemTxt)

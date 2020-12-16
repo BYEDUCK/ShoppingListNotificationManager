@@ -23,9 +23,9 @@ class NotificationService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val channelId = createNotificationChannel()
-        val listId = intent?.extras?.getLong("listId", -1L) ?: -1L
+        val listId = intent?.extras?.getString("listId") ?: ""
         val elemTxt = intent?.extras?.getString("elemTxt") ?: ""
-        val elemId = intent?.extras?.getLong("elemId") ?: -1L
+        val elemId = intent?.extras?.getString("elemId") ?: ""
         val activityIntent = Intent("${getString(R.string.mainPackage)}.ADD_EDIT_LIST").apply {
             putExtra("listId", listId)
             putExtra("elemId", elemId)
@@ -39,8 +39,15 @@ class NotificationService : Service() {
         )
         val notification = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("Shopping list $listId updated")
-            .setContentText("Element($elemId) \"$elemTxt\" has been added. Edit it!")
+            .setContentTitle("Shopping list ${listId.substring(0, 4)} updated")
+            .setContentText(
+                "Element(${
+                    elemId.substring(
+                        0,
+                        4
+                    )
+                }) \"$elemTxt\" has been added. Edit it!"
+            )
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .build()
